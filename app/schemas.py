@@ -23,7 +23,7 @@ class UserCreate(BaseModel):
     email: str
     password: str
 
-    @field_validator('password')
+    @field_validator("password")
     def validate_password(cls, v):
         if len(v) < 8:
             raise ValueError("Password must be at least 8 characters long")

@@ -71,7 +71,10 @@ async def all_aliases(skip: int, limit: int) -> List[str]:
         try:
             query = (
                 select(URL.alias)
-                .where((URL.expires_at > datetime.now(timezone.utc)) & (URL.is_active == True))
+                .where(
+                    (URL.expires_at > datetime.now(timezone.utc))
+                    & (URL.is_active == True)
+                )
                 .offset(skip)
                 .limit(limit)
             )

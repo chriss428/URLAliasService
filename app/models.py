@@ -22,5 +22,6 @@ class URL(Base):
     count: Mapped[int] = mapped_column(default=0)
     is_active: Mapped[bool] = mapped_column(nullable=False, default=True)
     expires_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(timezone.utc) + timedelta(days=1)
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc) + timedelta(days=1),
     )

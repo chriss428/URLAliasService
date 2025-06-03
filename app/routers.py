@@ -17,7 +17,9 @@ router = APIRouter()
 
 @router.get("/all_aliases", summary="Вывод всех активных ссылок с пагинацией")
 async def get_all_aliases(
-    skip: int = Query(0, alias="skip"), limit: int = Query(10, alias="limit"), auth_user = Depends(get_current_user)
+    skip: int = Query(0, alias="skip"),
+    limit: int = Query(10, alias="limit"),
+    auth_user=Depends(get_current_user),
 ):
     return await all_aliases(skip, limit)
 
@@ -25,7 +27,7 @@ async def get_all_aliases(
 @router.post(
     "/create_alias", response_model=URLSchema, summary="Генерация короткой ссылки"
 )
-async def create_alias(url: URLCreate, auth_user = Depends(get_current_user)):
+async def create_alias(url: URLCreate, auth_user=Depends(get_current_user)):
     return await alias(url.original_url)
 
 
@@ -37,5 +39,5 @@ async def redirect_url(alias: str):
 
 
 @router.post("/deactivation_alias", summary="Деактивация короткой ссылки")
-async def deactivation_alias(alias, auth_user = Depends(get_current_user)):
+async def deactivation_alias(alias, auth_user=Depends(get_current_user)):
     return await deactivation(alias)
