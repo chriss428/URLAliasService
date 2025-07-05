@@ -1,6 +1,6 @@
 services:
   my-app:
-    build: C:\URLAliasService
+    build: .
     depends_on:
       - postgres
     environment:
