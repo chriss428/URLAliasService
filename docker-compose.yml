@@ -1,0 +1,28 @@
+services:
+  my-app:
+    build: C:\URLAliasService
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: Test
+      DB_USER: postgres
+      DB_PASSWORD: test
+    networks:
+      - app_network
+    ports:
+      - 1500:8000
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: "Test"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "test"
+    networks:
+      - app_network
+    ports:
+      - 5432:5432
+networks:
+  app_network:
+    driver: bridge
